@@ -7,12 +7,15 @@ import App from './App';
 import 'tachyons';
 import { searchRobots } from './reducers';
 
+//Created Redux store and Provider component passes down the store
 const store = createStore(searchRobots);
 
 ReactDOM.render(
   <React.StrictMode>
     <div>
-      <App store={store} />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </div>
   </React.StrictMode>,
   document.getElementById('root')
