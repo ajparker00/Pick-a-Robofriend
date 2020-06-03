@@ -7,7 +7,7 @@ import App from './App';
 import 'tachyons';
 import { searchRobots } from './reducers';
 
-//Created Redux store and Provider component passes down the store
+//Created Redux store and the Provider component that passes down the store to the components
 const store = createStore(searchRobots);
 
 ReactDOM.render(
