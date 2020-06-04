@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import CardList from './CardList';
 import Searchbox from './Searchbox';
 import Scroll from './Scroll';
-import { setSearchField } from './actions';
+import { setSearchField, requestRobots } from './actions';
 
 // parameter state comes from index.js provider store state(rootReducers)
 const mapStateToProps = (state) => {
   return {
-    searchField: state.searchField,
+    searchField: state.searchRobots.searchField,
+    robots: state.requestRobots.robots,
+    isPending: state.requestRobots.isPending,
+    error: state.requestRobots.error,
   };
 };
 
@@ -17,6 +20,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestRobots: () => dispatch(requestRobots()),
   };
 };
 
