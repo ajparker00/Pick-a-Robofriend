@@ -25,23 +25,17 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = { Robots: [] };
-  }
-
   componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((response) => response.json())
-      .then((users) => this.setState({ Robots: users }));
+    this.props.onRequestRobots();
   }
 
   render() {
-    const { searchField, onSearchChange } = this.props;
-    const filteredRobots = this.state.Robots.filter((robot) => {
+    const { searchField, onSearchChange, robots, isPending } = this.props;
+    const filteredRobots = robots.filter((robot) => {
       return robot.name.toLowerCase().includes(searchField.toLowerCase());
     });
-    if (this.state.Robots.length === 0) {
+
+    if (isPending) {
       return <h1>Loading</h1>;
     } else {
       return (
